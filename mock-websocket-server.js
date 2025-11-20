@@ -108,7 +108,7 @@ wss.on('connection', (ws) => {
     });
 });
 
-// Send random alerts every 3-5 seconds
+// Send random alerts every 0-5 minutes
 setInterval(() => {
     const alert = generateAlert();
     console.log(`📢 Alert: ${alert.type} at (${alert.lat.toFixed(4)}, ${alert.lon.toFixed(4)})`);
@@ -117,7 +117,7 @@ setInterval(() => {
         type: 'alert',
         data: alert,
     });
-}, Math.random() * 2000 + 3000);
+}, Math.random() * 5 * 60 * 1000); // 0-5 minutes in milliseconds
 
 // Send metrics every 1 second
 setInterval(() => {
@@ -141,6 +141,6 @@ setInterval(() => {
 
 console.log('');
 console.log('💡 Server will send:');
-console.log('   - Random alerts every 3-5 seconds');
+console.log('   - Random alerts every 0-5 minutes');
 console.log('   - Metrics updates every 1 second');
 console.log('');
